@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./compare.css";
 import { CChart } from "@coreui/react-chartjs";
+import Button from 'react-bootstrap/Button';
+import { BsFillArrowLeftSquareFill } from "react-icons/bs";
+import Spinner from "react-bootstrap/Spinner";
 
 const Compare = () => {
   const navigate = useNavigate();
@@ -10,6 +13,9 @@ const Compare = () => {
   const [u2, setU2] = useState([]);
   const [username1, setUsername1] = useState("");
   const [username2, setUsername2] = useState("");
+  const [url1, setUrl1] = useState("");
+  const [url2, setUrl2] = useState("");
+  const [gotTheData, setGotTheData] = useState(false);
 
   useEffect(() => {
     let usernames = JSON.parse(localStorage.getItem("users"));
@@ -43,48 +49,71 @@ const Compare = () => {
     let usernames = JSON.parse(localStorage.getItem("users"));
     setUsername1(usernames[0]);
     setUsername2(usernames[1]);
+    setUrl1(`https://leetcode.com/${username1}`);
+    setUrl2(`https://leetcode.com/${username2}`);
     if (u1.status === "error" || u2.status === "error") {
       alert("Couldn't find user! Please Try Again");
       navigate("/", { replace: true });
     }
+    setGotTheData(true);
   }, [u1, u2]);
 
   return (
     <>
-      {" "}
+      {(gotTheData) ? (
+        <>
+
+      <div class="back-btn">
+        <Link to="/">
+          <Button variant="dark"> < BsFillArrowLeftSquareFill/></Button>
+        </Link>
+      </div>
+      <div class="main-heading">
+      <h1> {username1} VS {username2} </h1>
+      </div>
       <div class="grand_parent">
         <div class="parents">
-          <div class="child huhu">
-            <h4>{username1} LeetCode Stats</h4>
+          <div class="stats-card">
+            <h4 style={{ color: "orchid" }}>{username1}'s LeetCode Stats</h4>
             <h6>Ranking: {u1.ranking}</h6>
             <h6>
               Total Questions Solved: {u1.totalSolved}/{u1.totalQuestions}
             </h6>
-            <h6>
+            <h6 style={{ color: "green" }}>
               Easy Questions Solved: {u1.easySolved}/{u1.totalEasy}
             </h6>
-            <h6>
+            <h6 style={{ color: "orange" }}>
               Medium Questions Solved: {u1.mediumSolved}/{u1.totalMedium}
             </h6>
-            <h6>
+            <h6 style={{ color: "red" }}>
               Hard Questions Solved: {u1.hardSolved}/{u1.totalHard}
             </h6>
+              <Button variant="primary" size="sm">
+                <a href={url1} style={{ textDecoration: "none", color: "white", fontSize: "18px" }}>
+                    Check LeetCode Profile
+                </a>
+              </Button>
           </div>
-          <div class="child huhu">
-            <h4>{username2} LeetCode Stats</h4>
+          <div class="stats-card">
+            <h4 style={{ color: "orchid" }}>{username2}'s LeetCode Stats</h4>
             <h6>Ranking: {u2.ranking}</h6>
             <h6>
               Total Questions Solved: {u2.totalSolved}/{u2.totalQuestions}
             </h6>
-            <h6>
+            <h6 style={{ color: "green" }}>
               Easy Questions Solved: {u2.easySolved}/{u2.totalEasy}
             </h6>
-            <h6>
+            <h6 style={{ color: "orange" }}>
               Medium Questions Solved: {u2.mediumSolved}/{u2.totalMedium}
             </h6>
-            <h6>
+            <h6 style={{ color: "red" }}>
               Hard Questions Solved: {u2.hardSolved}/{u2.totalHard}
             </h6>
+            <Button variant="primary" size="sm">
+                <a href={url2} target="_blank" style={{ textDecoration: "none", color: "white", fontSize: "18px" }}>
+                    Check LeetCode Profile
+                </a>
+              </Button>
           </div>
         </div>
       </div>
@@ -222,6 +251,12 @@ const Compare = () => {
           </div>
         </div>
       </div>
+      </>
+      ):(<div className="d-flex justify-content-center my-4">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>)}
     </>
   );
 };

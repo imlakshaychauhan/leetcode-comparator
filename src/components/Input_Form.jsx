@@ -26,8 +26,11 @@ const Input_Form = () => {
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100%", flexDirection: "column", marginBottom: "0%" }}
     >
+        <div style={{  display: "flex", justifyContent: "center", color: "black", marginBottom:"0", fontStyle: "italic", marginBottom: "10%", marginTop: "5%", textDecoration: "underline"}}>
+          <h1>LeetCode Profile Comparator</h1>
+        </div>
       <div className="w-100" style={{ maxWidth: "400px" }}>
         <Card>
           <Card.Body>

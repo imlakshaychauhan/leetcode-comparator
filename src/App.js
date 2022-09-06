@@ -3,9 +3,9 @@ import Header from "./components/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/Home'
 import Compare from './pages/Compare'
+import './app.css';
 
 const App = () => {
-  
   return (
       <Router>
         <Header />
