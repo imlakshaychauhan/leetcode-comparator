@@ -10,7 +10,6 @@ const Compare = () => {
   const [u2, setU2] = useState([]);
   const [username1, setUsername1] = useState("");
   const [username2, setUsername2] = useState("");
-  const [submissions1, setSubmissions1] = useState([]);
 
   useEffect(() => {
     let usernames = JSON.parse(localStorage.getItem("users"));
@@ -44,8 +43,6 @@ const Compare = () => {
     let usernames = JSON.parse(localStorage.getItem("users"));
     setUsername1(usernames[0]);
     setUsername2(usernames[1]);
-    // setSubmissions1(Object.values(u1.submissionCalendar));
-    // console.log(Object.keys(u1.submissionCalendar));
     if (u1.status === "error" || u2.status === "error") {
       alert("Couldn't find user! Please Try Again");
       navigate("/", { replace: true });
@@ -55,6 +52,42 @@ const Compare = () => {
   return (
     <>
       {" "}
+      <div class="grand_parent">
+        <div class="parents">
+          <div class="child huhu">
+            <h4>{username1} LeetCode Stats</h4>
+            <h6>Ranking: {u1.ranking}</h6>
+            <h6>
+              Total Questions Solved: {u1.totalSolved}/{u1.totalQuestions}
+            </h6>
+            <h6>
+              Easy Questions Solved: {u1.easySolved}/{u1.totalEasy}
+            </h6>
+            <h6>
+              Medium Questions Solved: {u1.mediumSolved}/{u1.totalMedium}
+            </h6>
+            <h6>
+              Hard Questions Solved: {u1.hardSolved}/{u1.totalHard}
+            </h6>
+          </div>
+          <div class="child huhu">
+            <h4>{username2} LeetCode Stats</h4>
+            <h6>Ranking: {u2.ranking}</h6>
+            <h6>
+              Total Questions Solved: {u2.totalSolved}/{u2.totalQuestions}
+            </h6>
+            <h6>
+              Easy Questions Solved: {u2.easySolved}/{u2.totalEasy}
+            </h6>
+            <h6>
+              Medium Questions Solved: {u2.mediumSolved}/{u2.totalMedium}
+            </h6>
+            <h6>
+              Hard Questions Solved: {u2.hardSolved}/{u2.totalHard}
+            </h6>
+          </div>
+        </div>
+      </div>
       <div class="grand_parent">
         <div class="parents">
           <div class="child">
@@ -187,40 +220,10 @@ const Compare = () => {
               />
             </div>
           </div>
-          {/* <div class="graph-card">
-            <div className="graph">
-            <CChart
-              type="line" 
-              data={{
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                  {
-                    label: "My First dataset",
-                    backgroundColor: "rgba(220, 220, 220, 0.2)",
-                    borderColor: "rgba(220, 220, 220, 1)",
-                    pointBackgroundColor: "rgba(220, 220, 220, 1)",
-                    pointBorderColor: "#fff",
-                    data: [40, 20, 12, 39, 10, 40, 39, 80, 40]
-                  },
-                  {
-                    label: "My Second dataset",
-                    backgroundColor: "rgba(151, 187, 205, 0.2)",
-                    borderColor: "rgba(151, 187, 205, 1)",
-                    pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                    pointBorderColor: "#fff",
-                    data: [50, 12, 28, 29, 7, 25, 12, 70, 60]
-                  },
-                ],
-              }}
-            />
-            </div>
-          </div> */}
         </div>
       </div>
-
     </>
   );
 };
 
 export default Compare;
-
