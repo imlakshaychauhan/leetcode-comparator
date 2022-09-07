@@ -12,6 +12,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/compare" element={<Compare />} />
+          <Route path="*" element={<Home />} />
         </Routes>
     </Router>
   );
