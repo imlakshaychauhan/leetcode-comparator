@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/repo_url/static/css/main.5deeff70.css",
-    "main.js": "/repo_url/static/js/main.f8632a75.js",
-    "index.html": "/repo_url/index.html",
-    "main.5deeff70.css.map": "/repo_url/static/css/main.5deeff70.css.map",
-    "main.f8632a75.js.map": "/repo_url/static/js/main.f8632a75.js.map"
+    "main.css": "/leetcode-comparator/static/css/main.5deeff70.css",
+    "main.js": "/leetcode-comparator/static/js/main.f8632a75.js",
+    "index.html": "/leetcode-comparator/index.html",
+    "main.5deeff70.css.map": "/leetcode-comparator/static/css/main.5deeff70.css.map",
+    "main.f8632a75.js.map": "/leetcode-comparator/static/js/main.f8632a75.js.map"
   },
   "entrypoints": [
     "static/css/main.5deeff70.css",
